@@ -1,5 +1,7 @@
 from pyray import *
 
+# Let's Create a Pong Game!
+
 class MyGame:
     def __init__(self):
         self.WINWIDTH = 900
@@ -8,31 +10,23 @@ class MyGame:
         init_window(self.WINWIDTH, self.WINHEIGHT, "Hi :)")
         set_target_fps(60)
 
-        self.PlayerX = self.WINWIDTH // 2
-        self.PlayerY = self.WINHEIGHT // 2
-        self.playerSpeed = 20
+        self.ballx = self.WINWIDTH // 2
+        self.bally = self.WINHEIGHT // 2
+        self.ballrad = 15
+
+        self.paddle1x = 
+        self.paddle1y = self.WINHEIGHT // 2
 
     def Update(self):
-        begin_drawing()
-
-
-        if (is_key_down(KeyboardKey.KEY_W)):
-            self.PlayerY -= self.playerSpeed
-
-        if (is_key_down(KeyboardKey.KEY_A)):
-            self.PlayerX -= self.playerSpeed
-
-        if (is_key_down(KeyboardKey.KEY_S)):
-            self.PlayerY += self.playerSpeed
-
-        if (is_key_down(KeyboardKey.KEY_D)):
-            self.PlayerX += self.playerSpeed
-
-
-        end_drawing()
+        pass
 
     def Draw(self):
-        draw_circle(self.PlayerX, self.PlayerY, 20, WHITE)
+        begin_drawing()
+
+        draw_circle(self.ballx, self.bally, self.ballrad, WHITE)
+        draw_rectangle()
+
+        end_drawing()
 
     def Run(self):
         while not window_should_close():
