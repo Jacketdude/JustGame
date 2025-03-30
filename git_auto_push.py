@@ -1,5 +1,6 @@
 import asyncio
 import sys
+import shlex
 
 async def run_command(command):
     process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
@@ -18,7 +19,7 @@ async def git_add():
 
 async def git_commit(message):
     print(f"Committing changes: {message}")
-    return await run_command(f"git commit -m {message}")
+    return await run_command(f"git commit -m {shlex.quote(message)}")
 
 async def git_push(branch="main"):
     print("Pushing to Github...")
@@ -29,7 +30,7 @@ async def main():
         print("Usage: python git_auto_push.py 'Your commit message'")
         return
 
-    commit_message = sys.argv[1]
+    commit_message = " ".join(sys.argv[1:])
 
     if await git_add() == 0:
         if await git_commit(commit_message) == 0:
